@@ -67,29 +67,11 @@ public class Board {
     }
 
     public boolean isValid() {
-        // TODO shortcircuit
-        boolean validRows = checkRows(areValid);
-        boolean validColumns = checkColumns(areValid);
-        boolean validGroups = checkGroups(areValid);
-
-        System.out.println("Valid Rows: " + validRows);
-        System.out.println("Valid Columns: " + validColumns);
-        System.out.println("Valid Groups: " + validGroups);
-
-        return validRows && validColumns && validGroups;
+        return checkRows(areValid) && checkColumns(areValid) && checkGroups(areValid);
     }
 
     public boolean isComplete() {
-        // TODO shortcircuit
-        boolean validRows = checkRows(areComplete);
-        boolean validColumns = checkColumns(areComplete);
-        boolean validGroups = checkGroups(areComplete);
-
-        System.out.println("Complete Rows: " + validRows);
-        System.out.println("Complete Columns: " + validColumns);
-        System.out.println("Complete Groups: " + validGroups);
-
-        return validRows && validColumns && validGroups;
+        return checkRows(areComplete) && checkColumns(areComplete) && checkGroups(areComplete);
     }
 
     private boolean checkGroups(ThreeParamLambda<Set<Integer>, Integer, Integer, Boolean> condition) {
@@ -138,5 +120,11 @@ public class Board {
         return true;
     }
 
+    public int getSize() {
+        return size;
+    }
 
+    public boolean isEmpty(int row, int col) {
+        return get(row, col) == null;
+    }
 }
