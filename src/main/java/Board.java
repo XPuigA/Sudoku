@@ -1,21 +1,10 @@
 import java.util.HashSet;
 import java.util.Set;
 
-public class Board {
+public class Board  {
 
-    @FunctionalInterface
-    public interface ThreeParamLambda<T, U, V, R> {
-        public R apply(T t, U u, V v);
-    }
-
-    ThreeParamLambda<Set<Integer>, Integer, Integer, Boolean> areValid = (Set<Integer> values, Integer nulls, Integer size) -> {
-        return values.size() + nulls == size;
-    };
-
-    ThreeParamLambda<Set<Integer>, Integer, Integer, Boolean> areComplete = (Set<Integer> values, Integer nulls, Integer size) -> {
-        return values.size() == size && nulls == 0;
-    };
-
+    ThreeParamLambda<Set<Integer>, Integer, Integer, Boolean> areValid = (Set<Integer> values, Integer nulls, Integer size) -> values.size() + nulls == size;
+    ThreeParamLambda<Set<Integer>, Integer, Integer, Boolean> areComplete = (Set<Integer> values, Integer nulls, Integer size) -> values.size() == size && nulls == 0;
 
     private Integer[][] board = new Integer[9][9];
     private int size = 9;
@@ -67,6 +56,7 @@ public class Board {
     }
 
     public boolean isValid() {
+
         return checkRows(areValid) && checkColumns(areValid) && checkGroups(areValid);
     }
 
